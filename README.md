@@ -1,2 +1,3 @@
 # deep-sat
-segmentation in aerial images using deeplearning
+
+Dataset available at : https://www.kaggle.com/usharengaraju/isaid-dataset
