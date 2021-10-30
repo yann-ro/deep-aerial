@@ -1,3 +1,3 @@
 # deep-sat
 
-Dataset available at : https://www.kaggle.com/usharengaraju/isaid-dataset
+Dataset available at : https://captain-whu.github.io/DOTA/dataset.html
