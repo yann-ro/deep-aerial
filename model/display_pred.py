@@ -18,7 +18,7 @@ def plot_seg_mask(mask, ax, title, labels):
     ax.legend(handles=patches, bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.0)
 
 
-def display_results(i, test_set, segmodel, label):
+def display_results(i, test_set, segmodel):
     image1, mask1 = test_set[i]
     pred_mask1, score1 = segmodel.predict_image_mask_miou(image1, mask1)
 
@@ -26,7 +26,7 @@ def display_results(i, test_set, segmodel, label):
     ax1.imshow(image1)
     ax1.set_title("Picture")
 
-    plot_seg_mask(mask1, ax2, "Ground truth", label)
-    plot_seg_mask(pred_mask1, ax3, "UNet-MobileNet | mIoU {:.3f}".format(score1), label)
+    plot_seg_mask(mask1, ax2, "Ground truth", test_set.label)
+    plot_seg_mask(pred_mask1, ax3, "UNet-MobileNet | mIoU {:.3f}".format(score1), test_set.label)
 
     fig.tight_layout()

@@ -3,7 +3,7 @@ from torch.utils.data import Dataset
 from PIL import Image
 import torch
 import cv2
-
+from pandas import read_csv
 
 class DroneDataset(Dataset):
     def __init__(self, img_path, mask_path, X, mean, std, transform=None):
@@ -38,9 +38,10 @@ class DroneDataset(Dataset):
 
 
 class DroneTestDataset(Dataset):
-    def __init__(self, img_path, mask_path, X, transform=None):
+    def __init__(self, img_path, mask_path, label_path, X, transform=None):
         self.img_path = img_path
         self.mask_path = mask_path
+        self.label = read_csv(label_path)
         self.X = X
         self.transform = transform
 

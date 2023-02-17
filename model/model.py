@@ -4,12 +4,14 @@ import torch
 from model.metrics.segmentation import mIoU, pixel_accuracy
 from tqdm.notebook import tqdm
 from torchvision import transforms as T
-
+import matplotlib.pyplot as plt
+from model.metrics import plot_acc, plot_loss, plot_score
 
 class SegModel:
     def __init__(self, model, device) -> None:
         self.model = model
         self.device = device
+        self.history = {}
 
     def fit(
         self, epochs, model, train_loader, val_loader, criterion, optimizer, scheduler
@@ -113,7 +115,7 @@ class SegModel:
                 f"Time: {(time() - since) / 60:.2f}m",
             )
 
-        history = {
+        self.history = {
             "train_loss": train_losses,
             "val_loss": test_losses,
             "train_miou": train_iou,
@@ -124,7 +126,7 @@ class SegModel:
         }
         print(f"Total time: {(time() - fit_time) / 60:.2f} min")
 
-        return history
+        return self.history
 
     def get_lr(self, optimizer):
         for param_group in optimizer.param_groups:
@@ -177,6 +179,8 @@ class SegModel:
             img, mask = test_set[i]
             pred_mask, score = self.predict_image_mask_miou(img, mask)
             score_iou.append(score)
+        
+        print(f"Test Set mIoU {np.mean(score_iou):.4f}")
         return score_iou
 
     def pixel_acc(self, test_set):
@@ -185,4 +189,19 @@ class SegModel:
             img, mask = test_set[i]
             pred_mask, acc = self.predict_image_mask_pixel(img, mask)
             accuracy.append(acc)
+        
+        print(f"Test Set Pixel Accuracy {np.mean(accuracy):.4f}")
         return accuracy
+    
+    def plot_history(self):
+        plt.figure(figsize=(20,5))
+        
+        plt.subplot(1,3,1)
+        plot_loss(self.history)
+        
+        plt.subplot(1,3,2)
+        plot_score(self.history)
+        
+        plt.subplot(1,3,3)
+        plot_acc(self.history)
+        plt.show()
