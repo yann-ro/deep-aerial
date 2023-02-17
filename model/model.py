@@ -6,10 +6,12 @@ from tqdm.notebook import tqdm
 from torchvision import transforms as T
 import matplotlib.pyplot as plt
 from model.metrics import plot_acc, plot_loss, plot_score
+import os
 
 class SegModel:
-    def __init__(self, model, device) -> None:
+    def __init__(self, model, model_name, device) -> None:
         self.model = model
+        self.model_name = model_name
         self.device = device
         self.history = {}
 
@@ -205,3 +207,6 @@ class SegModel:
         plt.subplot(1,3,3)
         plot_acc(self.history)
         plt.show()
+
+    def save(self, path_folder):
+        torch.save(self.model, os.path.join(path_folder, self.model_name))
