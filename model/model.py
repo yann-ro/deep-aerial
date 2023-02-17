@@ -28,7 +28,7 @@ class SegModel:
         fit_time = time()
 
         for e in range(epochs):
-            since = time.time()
+            since = time()
             running_loss = 0
             iou_score = 0
             accuracy = 0
@@ -110,7 +110,7 @@ class SegModel:
                 f"Val mIoU: {val_iou_score / len(val_loader):.3f}..",
                 f"Train Acc:{accuracy / len(train_loader):.3f}..",
                 f"Val Acc:{test_accuracy / len(val_loader):.3f}..",
-                f"Time: {(time.time() - since) / 60:.2f}m",
+                f"Time: {(time() - since) / 60:.2f}m",
             )
 
         history = {
@@ -122,7 +122,7 @@ class SegModel:
             "val_acc": val_acc,
             "lrs": lrs,
         }
-        print(f"Total time: {(time.time() - fit_time) / 60:.2f} min")
+        print(f"Total time: {(time() - fit_time) / 60:.2f} min")
 
         return history
 
