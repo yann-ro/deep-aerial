@@ -129,6 +129,9 @@ class SegModel:
 
         return self.history
 
+    def save(self, path_folder):
+        torch.save(self.model, os.path.join(path_folder, self.model_name))
+
     def get_lr(self, optimizer):
         for param_group in optimizer.param_groups:
             return param_group["lr"]
@@ -206,6 +209,3 @@ class SegModel:
         plt.subplot(1,3,3)
         plot_acc(self.history)
         plt.show()
-
-    def save(self, path_folder):
-        torch.save(self.model, os.path.join(path_folder, self.model_name))
