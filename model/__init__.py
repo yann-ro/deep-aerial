@@ -1,1 +1,1 @@
-from model.model import SegModel
+from model.seg_model import SegModel

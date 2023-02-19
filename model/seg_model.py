@@ -16,7 +16,7 @@ class SegModel:
         self.history = {}
 
     def fit(
-        self, epochs, model, train_loader, val_loader, criterion, optimizer, scheduler
+        self, epochs, train_loader, val_loader, criterion, optimizer, scheduler
     ):
         torch.cuda.empty_cache()
         train_losses = []
@@ -28,17 +28,17 @@ class SegModel:
         lrs = []
         min_loss = np.inf
 
-        model.to(self.device)
+        self.model.to(self.device)
         fit_time = time()
 
-        for e in range(epochs):
+        for n_epoch in range(epochs):
             since = time()
             running_loss = 0
             iou_score = 0
             accuracy = 0
 
             # training loop
-            model.train()
+            self.model.train()
 
             for _, data in enumerate(tqdm(train_loader)):
 
@@ -49,7 +49,7 @@ class SegModel:
                 mask = mask_tiles.to(self.device)
 
                 # forward
-                output = model(image)
+                output = self.model(image)
                 loss = criterion(output, mask)
 
                 # evaluation metrics
@@ -67,7 +67,7 @@ class SegModel:
 
                 running_loss += loss.item()
 
-            model.eval()
+            self.model.eval()
             test_loss = 0
             test_accuracy = 0
             val_iou_score = 0
@@ -79,7 +79,7 @@ class SegModel:
 
                     image = image_tiles.to(self.device)
                     mask = mask_tiles.to(self.device)
-                    output = model(image)
+                    output = self.model(image)
                     # evaluation metrics
                     val_iou_score += mIoU(output, mask)
                     test_accuracy += pixel_accuracy(output, mask)
@@ -101,13 +101,12 @@ class SegModel:
                 min_loss = test_loss / len(val_loader)
                 print("Loss Not Decrease")
 
-            # iou
             val_iou.append(val_iou_score / len(val_loader))
             train_iou.append(iou_score / len(train_loader))
             train_acc.append(accuracy / len(train_loader))
             val_acc.append(test_accuracy / len(val_loader))
             print(
-                f"Epoch:{e + 1}/{epochs}..",
+                f"Epoch:{n_epoch + 1}/{epochs}..",
                 f"Train Loss: {running_loss / len(train_loader):.3f}..",
                 f"Val Loss: {test_loss / len(val_loader):.3f}..",
                 f"Train mIoU:{iou_score / len(train_loader):.3f}..",

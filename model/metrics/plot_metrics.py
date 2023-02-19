@@ -7,7 +7,8 @@ def plot_loss(history):
     plt.title("Loss per epoch")
     plt.ylabel("loss")
     plt.xlabel("epoch")
-    plt.legend(), plt.grid()
+    plt.legend()
+    plt.grid()
 
 
 def plot_score(history):
@@ -16,7 +17,8 @@ def plot_score(history):
     plt.title("Score per epoch")
     plt.ylabel("mean IoU")
     plt.xlabel("epoch")
-    plt.legend(), plt.grid()
+    plt.legend()
+    plt.grid()
 
 
 def plot_acc(history):
@@ -25,4 +27,5 @@ def plot_acc(history):
     plt.title("Accuracy per epoch")
     plt.ylabel("Accuracy")
     plt.xlabel("epoch")
-    plt.legend(), plt.grid()
+    plt.legend()
+    plt.grid()
