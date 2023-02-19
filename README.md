@@ -20,7 +20,7 @@ Results using kaggle semantic-drone-dataset:
 |lincolnzh/martianlunar-crater-detection-dataset| 78Mb |[link](https://www.kaggle.com/datasets/lincolnzh/martianlunar-crater-detection-dataset)
 |cici118/swimming-pool-detection-in-satellite-images| 84 Mb |[link](https://www.kaggle.com/datasets/cici118/swimming-pool-detection-in-satellite-images)
 |kbhartiya83/swimming-pool-and-car-detection| 117 Mb |[link](https://www.kaggle.com/datasets/kbhartiya83/swimming-pool-and-car-detection)
-|lilitopia/swimship-wake-imagery-mass| 12 Mb |[link](https://www.kaggle.com/datasets/lilitopia/swimship-wake-imagery-mass)
+|lilitopia/swimship-wake-imagery-mass| 12 Gb |[link](https://www.kaggle.com/datasets/lilitopia/swimship-wake-imagery-mass)
 |smedegaard/satellite-water-yolo| 2 Mb |[link](https://www.kaggle.com/datasets/smedegaard/satellite-water-yolo?select=labels_satellite-water-yolo_2021-03-30-08-46-04)
 |sadhliroomyprime/spatial-vehicle-detection| 62 Mb |[link](https://www.kaggle.com/datasets/sadhliroomyprime/spatial-vehicle-detection)
 |tekbahadurkshetri/building-mapping| 4 Mb |[link](https://www.kaggle.com/datasets/tekbahadurkshetri/building-mapping)
