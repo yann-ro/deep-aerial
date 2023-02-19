@@ -13,6 +13,8 @@ Results using kaggle semantic-drone-dataset:
 # Interesting datasets
 | kaggle API name | size | kaggle link|
 |---|---|---|
+| semantic-drone-dataset | 4Gb | [link](https://www.kaggle.com/datasets/bulentsiyah/semantic-drone-dataset) |
+| usharengaraju/isaid-dataset | 7Gb | [link](https://www.kaggle.com/datasets/usharengaraju/isaid-dataset) |
 |chandlertimm/dota-data | 20 Gb | [link](https://www.kaggle.com/datasets/chandlertimm/dota-data)
 | pandrii000/hituav-a-highaltitude-infrared-thermal-dataset| 200 Mb |[link](https://www.kaggle.com/datasets/pandrii000/hituav-a-highaltitude-infrared-thermal-dataset)
 | santurini/fits-images-for-object-counting-and-detection| 1 Gb |[link](https://www.kaggle.com/datasets/santurini/fits-images-for-object-counting-and-detection)
