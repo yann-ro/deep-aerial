@@ -5,10 +5,13 @@
 > 👷🏻‍♂️°o(in progress)
 
 # Results
-kaggle semantic-drone-dataset
+semantic-drone-dataset
 ![](ressources/result-drone-seg/output-0.png)
 ![](ressources/result-drone-seg/output-1.png)
 ![](ressources/result-drone-seg/output-2.png)
+
+swimming-pool-detection-in-satellite-images
+![](ressources/result-swimming-inst/output-0.png)
 
 ---
 # Interesting datasets
