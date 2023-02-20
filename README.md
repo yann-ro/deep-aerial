@@ -1,24 +1,20 @@
 <h1><p align="center">deep-aerial</p></h1>
 
-<img
-  src="https://images.unsplash.com/photo-1462331321792-cc44368b8894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2753&q=80"
-  width=1200
-  height=200
-  style="object-fit: cover;"
-/>
+![](ressources/banner.jpg)
 
 > 👷🏻‍♂️°o(in progress)
 
-Results using kaggle semantic-drone-dataset:
-![](results/drone-seg/output-0.png)
-![](results/drone-seg/output-1.png)
-![](results/drone-seg/output-2.png)
+# Results
+kaggle semantic-drone-dataset
+![](ressources/result-drone-seg/output-0.png)
+![](ressources/result-drone-seg/output-1.png)
+![](ressources/result-drone-seg/output-2.png)
 
 ---
 # Interesting datasets
 | kaggle API name | size | kaggle link|
 |---|---|---|
-| semantic-drone-dataset | 4Gb | [link](https://www.kaggle.com/datasets/bulentsiyah/semantic-drone-dataset) |
+| bulentsiyah/semantic-drone-dataset | 4Gb | [link](https://www.kaggle.com/datasets/bulentsiyah/semantic-drone-dataset) |
 | usharengaraju/isaid-dataset | 7Gb | [link](https://www.kaggle.com/datasets/usharengaraju/isaid-dataset) |
 |chandlertimm/dota-data | 20 Gb | [link](https://www.kaggle.com/datasets/chandlertimm/dota-data)
 | pandrii000/hituav-a-highaltitude-infrared-thermal-dataset| 200 Mb |[link](https://www.kaggle.com/datasets/pandrii000/hituav-a-highaltitude-infrared-thermal-dataset)
