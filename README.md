@@ -1,4 +1,4 @@
-<h1><center>deep-aerial</center></h1>
+<h1><p align="center">deep-aerial</p></h1>
 
 <img
   src="https://images.unsplash.com/photo-1462331321792-cc44368b8894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2753&q=80"
