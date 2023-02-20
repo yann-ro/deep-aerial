@@ -104,8 +104,6 @@ def convert_xmls_to_cocojson(annotation_paths: List[str],
 
 def convert_to_coco(ann_dir, labels_path, output_name='labels.json'):
     
-    
-    
     label2id = get_label2id(labels_path = labels_path)
 
     ann_paths = [os.path.join(ann_dir, file_name) for file_name in os.listdir(ann_dir)]
