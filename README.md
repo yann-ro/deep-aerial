@@ -2,9 +2,9 @@
 
 <img
   src="https://images.unsplash.com/photo-1462331321792-cc44368b8894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2753&q=80"
-  width=600
-  height=300
-  style="width: 1200px; height: 90px; object-fit: cover;"
+  width=1200
+  height=200
+  style="object-fit: cover;"
 />
 
 > 👷🏻‍♂️°o(in progress)
