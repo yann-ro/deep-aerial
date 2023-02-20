@@ -1,8 +1,9 @@
 import os
+
 import torch
-from torch.utils.data import Dataset
 from PIL import Image
 from pycocotools.coco import COCO
+from torch.utils.data import Dataset
 
 
 class InstCOCODataset(Dataset):
@@ -13,12 +14,11 @@ class InstCOCODataset(Dataset):
         self.ids = list(sorted(self.annotation.imgs.keys()))
 
     def __getitem__(self, index):
-
         annotation = self.annotation
         img_id = self.ids[index]
         ann_ids = annotation.getAnnIds(imgIds=img_id)
         coco_annotation = annotation.loadAnns(ann_ids)
-        path = annotation.loadImgs(img_id)[0]["file_name"]
+        path = annotation.loadImgs(img_id)[0]["file_name"].split("\\")[-1]
         img = Image.open(os.path.join(self.root, path))
 
         num_objs = len(coco_annotation)
