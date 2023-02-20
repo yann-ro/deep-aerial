@@ -78,7 +78,6 @@ def convert_xmls_to_cocojson(annotation_paths: List[str],
     bnd_id = 1  # START_BOUNDING_BOX_ID, TODO input as args ?
     print('Start converting !')
     for a_path in tqdm(annotation_paths):
-
         ann_tree = ET.parse(a_path)
         ann_root = ann_tree.getroot()
 
@@ -106,7 +105,7 @@ def convert_to_coco(ann_dir, labels_path, output_name='labels.json'):
     
     label2id = get_label2id(labels_path = labels_path)
 
-    ann_paths = [os.path.join(ann_dir, file_name) for file_name in os.listdir(ann_dir)]
+    ann_paths = [os.path.join(ann_dir, file_name) for file_name in os.listdir(ann_dir) if 'xml' in file_name]
     
     output_jsonpath = os.path.join(os.path.dirname(ann_dir), output_name)
 
