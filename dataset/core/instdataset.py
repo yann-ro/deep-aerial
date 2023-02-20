@@ -1,45 +1,59 @@
 import os
-import numpy as np
 import torch
+from torch.utils.data import Dataset
 from PIL import Image
+from pycocotools.coco import COCO
 
 
-class InstDataset(torch.utils.data.Dataset):
-    def __init__(self, root, transforms):
+class InstCOCODataset(Dataset):
+    def __init__(self, root, annotation, transforms=None):
         self.root = root
         self.transforms = transforms
-        self.images = list(sorted(os.listdir(os.path.join(root, "images"))))
-        self.labels = list(sorted(os.listdir(os.path.join(root, "labels"))))
+        self.annotation = COCO(annotation)
+        self.ids = list(sorted(self.annotation.imgs.keys()))
 
-    def __getitem__(self, idx):
-        
-        img_path = os.path.join(self.root, "PNGImages", self.images[idx])
-        img = Image.open(img_path).convert("RGB") 
-        
-        
-        # convert everything into a torch.Tensor
+    def __getitem__(self, index):
+
+        annotation = self.annotation
+        img_id = self.ids[index]
+        ann_ids = annotation.getAnnIds(imgIds=img_id)
+        coco_annotation = annotation.loadAnns(ann_ids)
+        path = annotation.loadImgs(img_id)[0]["file_name"]
+        img = Image.open(os.path.join(self.root, path))
+
+        num_objs = len(coco_annotation)
+
+        boxes = []
+        for i in range(num_objs):
+            x_min = coco_annotation[i]["bbox"][0]
+            y_min = coco_annotation[i]["bbox"][1]
+            x_max = x_min + coco_annotation[i]["bbox"][2]
+            y_max = y_min + coco_annotation[i]["bbox"][3]
+            boxes.append([x_min, y_min, x_max, y_max])
         boxes = torch.as_tensor(boxes, dtype=torch.float32)
-        # there is only one class
-        labels = torch.ones((num_objs,), dtype=torch.int64)
-        masks = torch.as_tensor(masks, dtype=torch.uint8)
 
-        image_id = torch.tensor([idx])
-        area = (boxes[:, 3] - boxes[:, 1]) * (boxes[:, 2] - boxes[:, 0])
-        # suppose all instances are not crowd
+        labels = torch.ones((num_objs,), dtype=torch.int64)
+
+        img_id = torch.tensor([img_id])
+
+        areas = []
+        for i in range(num_objs):
+            areas.append(coco_annotation[i]["area"])
+        areas = torch.as_tensor(areas, dtype=torch.float32)
+
         iscrowd = torch.zeros((num_objs,), dtype=torch.int64)
 
         target = {}
         target["boxes"] = boxes
         target["labels"] = labels
-        target["masks"] = masks
-        target["image_id"] = image_id
-        target["area"] = area
+        target["image_id"] = img_id
+        target["area"] = areas
         target["iscrowd"] = iscrowd
 
         if self.transforms is not None:
-            img, target = self.transforms(img, target)
+            img = self.transforms(img)
 
         return img, target
 
     def __len__(self):
-        return len(self.imgs)
+        return len(self.ids)
