@@ -2,28 +2,54 @@ import os
 
 import matplotlib.pyplot as plt
 import torch
-from torchvision.models.detection import fasterrcnn_resnet50_fpn
-from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
+from torchvision.models.detection import (
+    fasterrcnn_resnet50_fpn,
+    fcos_resnet50_fpn,
+    retinanet_resnet50_fpn_v2,
+)
 from tqdm.notebook import tqdm
 
 from .core.model import Model
 from .display_pred_inst import display_img_with_bbox
 
 
-def get_model_instance_segmentation(num_classes):
-    model = fasterrcnn_resnet50_fpn(pretrained=False)
-    in_features = model.roi_heads.box_predictor.cls_score.in_features
-    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
+def get_model_inst(
+    num_classes,
+    model_name="faster_rcnn",
+    pretrained_head=False,
+    pretrained_backbone=False,
+):
+    if model_name == "faster_rcnn":
+        model = fasterrcnn_resnet50_fpn(
+            num_classes=num_classes,
+            pretrained=pretrained_head,
+            pretrained_backbone=pretrained_backbone,
+        )
+
+    if model_name == "fcos_resnet":
+        model = fcos_resnet50_fpn(
+            num_classes=num_classes,
+            pretrained=pretrained_head,
+            pretrained_backbone=pretrained_backbone,
+        )
+
+    if model_name == "retinanet":
+        model = retinanet_resnet50_fpn_v2(
+            num_classes=num_classes,
+            pretrained=pretrained_head,
+            pretrained_backbone=pretrained_backbone,
+        )
 
     return model
 
 
 class InstModel(Model):
-    def __init__(self, model, model_name, device):
+    def __init__(self, model, model_name, device, threshold=None):
         self.model = model
         self.model_name = model_name
         self.device = device
         self.history = {}
+        self.threshold = threshold
 
     def fit(
         self,
@@ -62,12 +88,12 @@ class InstModel(Model):
             self.history["loss"].append(hist_loss)
             print(f"Epoch: {epoch}, Loss: {hist_loss}")
 
-            self.display_output(train_loader, [0, 1, 2, 3, 4])
+            self.display_output(train_loader.dataset, [0, 1, 2, 3, 4])
 
     def save(self, path_folder):
         torch.save(self.model, os.path.join(path_folder, self.model_name))
 
-    def display_output(self, test_set, list_id):
+    def display_output(self, test_set, list_id, threshold=None):
         self.model.eval()
         fig, axs = plt.subplots(1, len(list_id), figsize=(20, 10))
 
@@ -76,6 +102,10 @@ class InstModel(Model):
             (pred,) = self.model(img[None, :].to(self.device))
 
             display_img_with_bbox(
-                axs[i], img.permute(1, 2, 0).cpu(), pred, from_pred=True
+                axs[i],
+                img.permute(1, 2, 0).cpu(),
+                pred,
+                from_pred=True,
+                threshold=threshold,
             )
-        fig.show()
+        plt.show()

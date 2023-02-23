@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import patches, patheffects
 
@@ -29,7 +28,9 @@ def add_bbox(ax, bbox, conf=None, color="red"):
         )
 
 
-def display_img_with_bbox(ax, img, labels, legend=None, from_pred=False):
+def display_img_with_bbox(
+    ax, img, labels, legend=None, from_pred=False, threshold=None
+):
     ax.imshow(img)
     ax.axis("off")
 
@@ -37,19 +38,8 @@ def display_img_with_bbox(ax, img, labels, legend=None, from_pred=False):
         for bbox, label, score in zip(
             labels["boxes"], labels["labels"], labels["scores"]
         ):
-            add_bbox(ax, bbox, score)
+            if score >= threshold:
+                add_bbox(ax, bbox, score)
     else:
         for bbox, label in zip(labels["boxes"], labels["labels"]):
             add_bbox(ax, bbox)
-
-
-def display_output_inst(model, test_set, device, list_id):
-    model.eval()
-    fig, axs = plt.subplots(1, len(list_id), figsize=(20, 10))
-
-    for i, id in enumerate(list_id):
-        img, _ = test_set[id]
-        (pred,) = model(img[None, :].to(device))
-
-        display_img_with_bbox(axs[i], img.permute(1, 2, 0).cpu(), pred, from_pred=True)
-    fig.show()
