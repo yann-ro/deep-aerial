@@ -93,7 +93,7 @@ class InstModel(Model):
     def save(self, path_folder):
         torch.save(self.model, os.path.join(path_folder, self.model_name))
 
-    def display_output(self, test_set, list_id, threshold=None):
+    def display_output(self, test_set, list_id, threshold=0):
         self.model.eval()
         fig, axs = plt.subplots(1, len(list_id), figsize=(20, 10))
 

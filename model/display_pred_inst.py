@@ -28,9 +28,7 @@ def add_bbox(ax, bbox, conf=None, color="red"):
         )
 
 
-def display_img_with_bbox(
-    ax, img, labels, legend=None, from_pred=False, threshold=None
-):
+def display_img_with_bbox(ax, img, labels, legend=None, from_pred=False, threshold=0):
     ax.imshow(img)
     ax.axis("off")
 
