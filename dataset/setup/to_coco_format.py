@@ -173,7 +173,7 @@ class YoloDataset:
         for img_id, a_path in tqdm(enumerate(annotation_paths)):
             # images
             filename_label = os.path.basename(a_path)
-            img_root = os.path.dirname(a_path).replace("label", "images")
+            img_root = os.path.dirname(a_path).replace("labels", "images")
             img_info = self.get_image_info(filename_label, img_root, img_id)
             output_json_dict["images"].append(img_info)
 
