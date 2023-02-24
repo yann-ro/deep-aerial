@@ -89,7 +89,6 @@ class PascalVocDataset:
 
         annotation_paths = [path for path in annotation_paths if "xml" in path]
 
-        print("Start converting !")
         for a_path in tqdm(annotation_paths):
             ann_tree = ET.parse(a_path)
             ann_root = ann_tree.getroot()
@@ -171,7 +170,6 @@ class YoloDataset:
 
         annotation_paths = [path for path in annotation_paths if "txt" in path]
 
-        print("Start converting !")
         for img_id, a_path in tqdm(enumerate(annotation_paths)):
             # images
             filename_label = os.path.basename(a_path)
