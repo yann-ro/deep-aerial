@@ -184,7 +184,9 @@ class YoloDataset:
             labels_str = [label_str.split(" ") for label_str in labels_str]
 
             for labels in labels_str:
-                ann = self.get_coco_annotation(labels, label2id)
+                ann = self.get_coco_annotation(
+                    labels, label2id, img_info["width"], img_info["height"]
+                )
                 ann.update({"image_id": img_id, "id": bnd_id})
                 output_json_dict["annotations"].append(ann)
 
