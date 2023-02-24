@@ -133,6 +133,7 @@ class YoloDataset:
         return image_info
 
     def get_coco_annotation(self, labels, label2id, img_width, img_height):
+        print(labels)
         label, xmin, ymin, width, height = labels
 
         assert label in label2id, f"Error: {label} is not in label2id !"
