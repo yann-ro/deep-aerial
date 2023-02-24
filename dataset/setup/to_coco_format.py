@@ -227,9 +227,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-p", "--path", type=str, help="path")
-
     parser.add_argument("-l", "--label_name_path", type=str, help="label_path")
+    parser.add_argument("-d", "--dataset_type", type=str, help="xml or txt")
 
     args = parser.parse_args()
 
-    convert_to_coco(args.path, args.label_name_path)
+    convert_to_coco(
+        ann_dir=args.path,
+        labels_path=args.label_name_path,
+        input_type=args.dataset_type,
+    )
