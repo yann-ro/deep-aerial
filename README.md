@@ -13,6 +13,11 @@ semantic-drone-dataset
 swimming-pool-detection-in-satellite-images
 ![](ressources/result-swimming-inst/output-0.png)
 
+hituav
+![](ressources/result-hit-uav/output-1.png)
+![](ressources/result-hit-uav/output-2.png)
+![](ressources/result-hit-uav/output-3.png)
+
 ---
 # Interesting datasets
 
