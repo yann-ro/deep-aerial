@@ -138,8 +138,8 @@ class YoloDataset:
         assert label in label2id, f"Error: {label} is not in label2id !"
         category_id = label2id[label]
 
-        width = int(float(width))
-        height = int(float(height))
+        width = int(float(width) * img_width)
+        height = int(float(height) * img_height)
         xmin = int(float(xmin) * img_width - width / 2)
         ymin = int(float(ymin) * img_height - height / 2)
 

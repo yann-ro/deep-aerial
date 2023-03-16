@@ -15,6 +15,9 @@ swimming-pool-detection-in-satellite-images
 
 ---
 # Interesting datasets
+
+- Kaggle
+
 | kaggle API name | size | kaggle link|
 |---|---|---|
 | bulentsiyah/semantic-drone-dataset | 4Gb | [link](https://www.kaggle.com/datasets/bulentsiyah/semantic-drone-dataset) |
@@ -38,3 +41,28 @@ swimming-pool-detection-in-satellite-images
 |aninda/etci-2021-competition-on-flood-detection| 4 Gb |[link](https://www.kaggle.com/datasets/aninda/etci-2021-competition-on-flood-detection)
 |ancaco12/aerial-satellite-images | 25 Mb |[link](https://www.kaggle.com/datasets/ancaco12/aerial-satellite-images)
 |quadeer15sh/augmented-forest-segmentation| 181 Mb |[link](https://www.kaggle.com/datasets/quadeer15sh/augmented-forest-segmentation)
+
+- other: Aerial
+
+| name | size | url link|
+|---|---|---|
+| Inria Aerial Image Labeling Dataset |  | [link](https://project.inria.fr/aerialimagelabeling/) |
+| Cars Overhead With Context |  | [link](https://gdo152.llnl.gov/cowc/) |
+|  |  | [link]() |
+
+
+- other: Satellite
+
+| name | size | url link|
+|---|---|---|
+| spacenet |  | [link](https://spacenet.ai/datasets/) |
+| satlas |  | [link](https://satlas.apps.allenai.org/) |
+|  |  | [link]() |
+
+
+- other: Space
+
+| name | size | url link|
+|---|---|---|
+| The PANGAEA mineralogical database | 13 MB | [link](https://data.mendeley.com/datasets/6dfkgnh9bp) |
+|  |  | [link]() |
