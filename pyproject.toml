@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "deep-aerial"
+version = "0.1.0"
+description = ""
+authors = ["YannRodriguez <52059549+YannRodriguez@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+gdal = "^3.6.3"
+torch = "^2.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
