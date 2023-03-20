@@ -25,3 +25,8 @@ repos:
     args:
     - "--max-line-length=88"
     - "--extend-ignore=E501,W503,E203,E402,E712"
+
+- repo: https://github.com/dfm/black_nbconvert
+  rev: v0.4.0
+  hooks:
+  - id: black_nbconvert
